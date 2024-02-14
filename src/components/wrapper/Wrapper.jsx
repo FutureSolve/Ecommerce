@@ -1,48 +1,51 @@
-import React from "react"
-import "./style.css"
+import React from "react";
+import { Container, Grid, Typography, Box, Paper } from "@mui/material";
+import LocalShippingIcon from "@mui/icons-material/LocalShipping";
+import PaymentIcon from "@mui/icons-material/Payment";
+import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
+import HeadsetMicIcon from "@mui/icons-material/HeadsetMic";
 
 const Wrapper = () => {
   const data = [
     {
-      cover: <i class='fa-solid fa-truck-fast'></i>,
+      cover: <LocalShippingIcon fontSize="large" />,
       title: "Worldwide Delivery",
-      decs: "We offer competitive prices on our 100 million plus product any range.",
+      desc: "We offer competitive prices on our 100 million plus product any range.",
     },
     {
-      cover: <i class='fa-solid fa-id-card'></i>,
+      cover: <PaymentIcon fontSize="large" />,
       title: "Safe Payment",
-      decs: "We offer competitive prices on our 100 million plus product any range.",
+      desc: "We offer competitive prices on our 100 million plus product any range.",
     },
     {
-      cover: <i class='fa-solid fa-shield'></i>,
-      title: "Shop With Confidence ",
-      decs: "We offer competitive prices on our 100 million plus product any range.",
+      cover: <VerifiedUserIcon fontSize="large" />,
+      title: "Shop With Confidence",
+      desc: "We offer competitive prices on our 100 million plus product any range.",
     },
     {
-      cover: <i class='fa-solid fa-headset'></i>,
-      title: "24/7 Support ",
-      decs: "We offer competitive prices on our 100 million plus product any range.",
+      cover: <HeadsetMicIcon fontSize="large" />,
+      title: "24/7 Support",
+      desc: "We offer competitive prices on our 100 million plus product any range.",
     },
-  ]
-  return (
-    <>
-      <section className='wrapper background'>
-        <div className='container grid2'>
-          {data.map((val, index) => {
-            return (
-              <div className='product' key={index}>
-                <div className='img icon-circle'>
-                  <i>{val.cover}</i>
-                </div>
-                <h3>{val.title}</h3>
-                <p>{val.decs}</p>
-              </div>
-            )
-          })}
-        </div>
-      </section>
-    </>
-  )
-}
+  ];
 
-export default Wrapper
+  return (
+    <Box component="section" className="wrapper background">
+      <Container>
+        <Grid container spacing={4}>
+          {data.map((val, index) => (
+            <Grid item xs={12} sm={6} md={3} key={index}>
+              <Paper elevation={3} className="product">
+                <Box className="img icon-circle">{val.cover}</Box>
+                <Typography variant="h5">{val.title}</Typography>
+                <Typography variant="body2">{val.desc}</Typography>
+              </Paper>
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
+    </Box>
+  );
+};
+
+export default Wrapper;

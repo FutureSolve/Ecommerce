@@ -1,5 +1,5 @@
-import { Box } from "@mui/material"
-import React from "react"
+import { Box, Grid, Paper, Typography } from "@mui/material";
+import React from "react";
 
 const Categories = () => {
   const data = [
@@ -10,26 +10,6 @@ const Categories = () => {
     {
       cateImg: "./images/category/cat2.png",
       cateName: "Electronic",
-    },
-    {
-      cateImg: "./images/category/cat3.png",
-      cateName: "Cars",
-    },
-    {
-      cateImg: "./images/category/cat4.png",
-      cateName: "Home & Garden",
-    },
-    {
-      cateImg: "./images/category/cat5.png",
-      cateName: "Gifts",
-    },
-    {
-      cateImg: "./images/category/cat6.png",
-      cateName: "Music",
-    },
-    {
-      cateImg: "./images/category/cat7.png",
-      cateName: "Health & Beauty",
     },
     {
       cateImg: "./images/category/cat8.png",
@@ -43,33 +23,24 @@ const Categories = () => {
       cateImg: "./images/category/cat10.png",
       cateName: "Groceries",
     },
-    {
-      cateImg: "./images/category/cat11.png",
-      cateName: "Books",
-    },
-  ]
+  ];
 
   return (
-    <>
-      <Box sx={{m:"40px", width:"100%",backgroundColor:" #fff",padding: "15px",}} className='category'>
-        {data.map((value, index) => {
-          return (
-            <Box>
-            <Box sx={{ width: "30px",
-              height: "30px",
-              mt: "10px",
-              fit: "contain",
-              p:"4px"
-              }}  key={index}>
-              <img src={value.cateImg} alt='' />
-            </Box>
-            <span>{value.cateName}</span>
-            </Box>
-          )
-        })}
-      </Box>
-    </>
-  )
-}
+    <Box sx={{ m: "10px", backgroundColor: "#fff", padding: "15px" }} >
+      <Grid container spacing={2}>
+        {data.map((value, index) => (
+          <Grid item key={index}>
+            <Paper sx={{ textAlign: "center", p: 2, display: "flex", flexDirection: "column" }}>
+              <Box sx={{ width: "60px", height: "60px", mx: "auto" }}>
+                <img src={value.cateImg} alt='' style={{ width: "100%", height: "100%", objectFit: "contain" }} />
+              </Box>
+              <Typography variant="subtitle2">{value.cateName}</Typography>
+            </Paper>
+          </Grid>
+        ))}
+      </Grid>
+    </Box>
+  );
+};
 
-export default Categories
+export default Categories;

@@ -54,7 +54,7 @@ const ShopCart = ({ shopItems, addToCart }) => {
 
   return (
     <>
-      {shopItems.map((shopItems, index) => {
+      {shopItems.slice(0, 6).map((shopItems, index) => {
         return (
           <div className='box'>
             <div className='product mtop'>

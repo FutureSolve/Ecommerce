@@ -1,4 +1,5 @@
 import React from "react"
+import { Link } from "react-router-dom";
 
 const Head = () => {
   return (
@@ -6,18 +7,18 @@ const Head = () => {
       <section className='head'>
         <div className='container d_flex'>
           <div className='left row'>
-            <i className='fa fa-phone'></i>
-            <label> +21284152740</label>
-            <i className='fa fa-envelope'></i>
-            <label> mohamedsa3d219@gmail.com</label>
+
+          <Link
+              to="/"
+               style={{maxWidth:20, textDecoration: 'none' , color: 'inherit' }}
+            >
+                       <label> Hambaka</label>
+            </Link>
+            
           </div>
           <div className='right row RText'>
-            <label>Theme FAQ"s</label>
-            <label>Need Help?</label>
             <span>🏳️‍⚧️</span>
             <label>EN</label>
-            <span>🏳️‍⚧️</span>
-            <label>EG</label>
           </div>
         </div>
       </section>

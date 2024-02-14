@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import Typography from "@mui/material/Typography";
 
 const Navbar = () => {
   const [mobileMenu, setMobileMenu] = useState(false);
@@ -15,48 +16,39 @@ const Navbar = () => {
 
   return (
     <>
-    <header className='header'>
-      <div className="container d_flex">
-        <div className="categories d_flex" onClick={toggleDropdown}>
-          <h4>
-          <span className="fa-solid fa-border-all"></span>
-            Categories
-            <i className={`fa ${showDropdown ? "fa-chevron-up" : "fa-chevron-down"}`}></i>
-          </h4>
-        </div>
-        {showDropdown && (
-          <div  style={{ backgroundColor: "lightgray", padding: "10px", marginTop: "5px" }}>
-          {/* Replace with your actual categories or dynamically generated content */}
-          <ul>
-            <li>Category 1</li>
-            <li>Category 2</li>
-            <li>Category 3</li>
-          </ul>
-        </div>
-        )}
+      <header className="header">
+        <div className="container d_flex">
+          <div style={{ margin: "auto 0" }}>
+            <Link
+              to="/"
+              //             style={{maxWidth:20, textDecoration: 'none' }}
+            >
+              <Typography
+                variant="h6"
+                noWrap
+                component="div"
+                sx={{ display: { xs: "none", sm: "block", color: "#0f3460" } }}
+              >
+                Hambaka
+              </Typography>
+            </Link>
+          </div>
 
-        <div className="navlink">
-          <ul className={mobileMenu ? "nav-links-MobileMenu" : "link f_flex capitalize"} onClick={closeMobileMenu}>
-            <li>
-              <Link to="/">home</Link>
-            </li>
-            <li>
-              <Link to="/Categories">Categories</Link>
-            </li>
-            <li>
-              <Link to="/Profile">user Profile</Link>
-            </li>
-            <li>
-              <Link to="/track">track my order</Link>
-            </li>
-          </ul>
-
-          <button className="toggle" onClick={() => setMobileMenu(!mobileMenu)}>
-            {mobileMenu ? <i className="fas fa-times close home-btn"></i> : <i className="fas fa-bars open"></i>}
-          </button>
+          <div className="navlink">
+            <ul className={"link f_flex capitalize"}>
+              <li>
+                <Link to="/">home</Link>
+              </li>
+              <li>
+                <Link to="/Categories">Categories</Link>
+              </li>
+              <li>
+                <Link to="/Profile">user Profile</Link>
+              </li>
+            </ul>
+          </div>
         </div>
-      </div>
-    </header>
+      </header>
     </>
   );
 };

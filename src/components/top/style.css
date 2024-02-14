@@ -29,3 +29,28 @@
   position: absolute;
   right: 0;
 }
+
+/* Media Queries for Responsive Design */
+@media only screen and (max-width: 768px) {
+  .TopCate .nametop span {
+    font-size: 11px;
+    padding: 4px 9px;
+    top: 9px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .TopCate .nametop span {
+    font-size: 10px;
+    padding: 3px 8px;
+    top: 8px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .TopCate .nametop span {
+    font-size: 9px;
+    padding: 2px 7px;
+    top: 7px;
+  }
+}

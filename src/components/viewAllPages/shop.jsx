@@ -9,7 +9,7 @@ import { useLocation } from 'react-router-dom';
   const category = searchParams.get('category');
   console.log(category)
   return (
-    <div className="shop1">
+    <div >
       <div className="shopTitle1">
         <h1>{category}</h1>
       </div>
