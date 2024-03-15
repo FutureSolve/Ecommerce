@@ -12,6 +12,7 @@ import SignIn from "./components/auth/SignIn"
 import SignUp from "./components/auth/SignUp"
 import Profile from "./components/profile/Profile"
 import Categories from "./components/categories/Categories"
+import ProductPage from "./components/ViewItem/ItemPage"
 function App() {
   /*
   step1 :  const { productItems } = Data 
@@ -102,6 +103,10 @@ function App() {
           </Route>
           <Route path='/Categories' exact>
             <Categories />
+            
+          </Route>
+          <Route path='/ProductPage' exact>
+            <ProductPage />
             
           </Route>
           <Route path='/view-all' exact render={(props) => (
