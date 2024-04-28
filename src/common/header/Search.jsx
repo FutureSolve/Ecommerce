@@ -1,89 +1,17 @@
-// import React, { useState } from "react";
-// import { Container, Grid, Typography, InputBase, IconButton, Badge } from "@mui/material";
- import { useHistory, Link } from "react-router-dom";
-
-// const Search = ({ CartItem }) => {
-//   const history = useHistory();
-//   const [isHovered, setIsHovered] = useState(false);
-
-  // const handleLinkClick = () => {
-  //   const storedToken = localStorage.getItem('authToken');
-  //   const isLoggedIn = !!storedToken;
-
-  //   if (!isLoggedIn) {
-  //     history.push('/SignIn');
-  //   } else {
-  //     history.push('/Profile');
-  //   }
-  // };
-
-//   return (
-//     <Container>
-//       <Grid container alignItems="center" justifyContent="space-between" className="search">
-//         <Grid item xs={12} md={2} lg={1}>
-//           <Link
-//             to="/"
-//             style={{maxWidth:20, textDecoration: 'none', color: isHovered ? '#ff014f' : 'inherit' }}
-//           
-//           >
-//             <Typography maxWidth={30} variant="h5">Hambka</Typography>
-//           </Link>
-//         </Grid>
-
-//         <Grid item xs={12} md={6} lg={7} container alignItems="center" spacing={2}></Grid>
-
-//         <Grid item xs={12} md={2} lg={2} container alignItems="center" justifyContent="flex-end">
-//           <Grid item>
-//             <Link
-//               to="#"
-//               onClick={handleLinkClick}
-//               style={{ textDecoration: 'none', color: isHovered ? '#ff014f' : 'inherit' }}
-//               onMouseEnter={() => setIsHovered(true)}
-//               onMouseLeave={() => setIsHovered(false)}
-//             >
-//               <IconButton>
-//                 <i className="fa fa-user icon-circle"></i>
-//               </IconButton>
-//             </Link>
-//           </Grid>
-//           <Grid item>
-//             <Link
-//               to="/cart"
-//               style={{ textDecoration: 'none', color: isHovered ? '#ff014f' : 'inherit' }}
-//               onMouseEnter={() => setIsHovered(true)}
-//               onMouseLeave={() => setIsHovered(false)}
-//             >
-//               <IconButton>
-//                 <i className="fa fa-shopping-bag icon-circle"></i>
-//                 <Badge badgeContent={CartItem.length} color="ff014f"></Badge>
-//               </IconButton>
-//             </Link>
-//           </Grid>
-//         </Grid>
-//       </Grid>
-//     </Container>
-//   );
-// };
-
-// export default Search;
+import { useHistory, Link } from "react-router-dom";
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import Badge from '@mui/material/Badge';
-import MenuItem from '@mui/material/MenuItem';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import MailIcon from '@mui/icons-material/Mail';
 import {AddShoppingCart} from '@mui/icons-material';
-import MoreIcon from '@mui/icons-material/MoreVert';
-
+import { useState } from 'react';
+import { useEffect } from 'react';
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
@@ -131,9 +59,6 @@ export default function PrimarySearchAppBar
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const history = useHistory();
-  const isMenuOpen = Boolean(anchorEl);
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
   const handleLinkClick = () => {
     const storedToken = localStorage.getItem('authToken');
     const isLoggedIn = !!storedToken;
@@ -145,23 +70,40 @@ export default function PrimarySearchAppBar
     }
   };
 
-  const handleProfileMenuOpen = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
-  };
-
-  const handleMenuClose = () => {
-    setAnchorEl(null);
-    handleMobileMenuClose();
   };
 
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
+  
+  const [searchQuery, setSearchQuery] = useState('');
 
+  const handleInputChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`http://localhost:5000/api/v1/Product/{search}?query=${searchQuery}`);
+        const data = await response.json();
+        console.log(data)
+        // Handle the response data here...
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    if (searchQuery !== '') {
+      fetchData();
+    }
+  }, [searchQuery]);
+
+ // Function to handle search bar click event
+ const handleSearchBarClick = () => {
+  history.push('/SearchPage');
+};
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -176,13 +118,14 @@ export default function PrimarySearchAppBar
           >
           </IconButton>
          
-          <Search>
+          <Search  onClick={handleSearchBarClick}>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
             <StyledInputBase
               placeholder="Search…"
               inputProps={{ 'aria-label': 'search' }}
+               onChange={handleInputChange}
             />
           </Search>
           <Box sx={{ flexGrow: 1 }} />

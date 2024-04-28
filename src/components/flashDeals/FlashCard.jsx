@@ -26,7 +26,7 @@ const SamplePrevArrow = (props) => {
   );
 };
 
-const FlashCard = ({ headingText, addToCart }) => {
+const  FlashCard = ({ headingText, addToCart }) => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -55,8 +55,7 @@ const FlashCard = ({ headingText, addToCart }) => {
     dots: false,
     infinite: true,
     slidesToShow:5,
-    slidesToScroll: 1,
-    autoplay: true,
+    autoplay: false,
     arrows: true,
     responsive: [
       {
@@ -93,7 +92,7 @@ const FlashCard = ({ headingText, addToCart }) => {
         {products.map((product) => (
           <div className="box" key={product.id}>
             <div className="product mtop">
-              <div className="img">
+              <div>
                 <span className="discount">{product.discount}% Off</span>
                 <img src={product.cover} alt="" />
                 <div className="product-like">

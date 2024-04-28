@@ -13,6 +13,7 @@ import SignUp from "./components/auth/SignUp"
 import Profile from "./components/profile/Profile"
 import Categories from "./components/categories/Categories"
 import ProductPage from "./components/ViewItem/ItemPage"
+import SearchPage from "./components/search/searchPage"
 function App() {
   /*
   step1 :  const { productItems } = Data 
@@ -109,10 +110,15 @@ function App() {
             <ProductPage />
             
           </Route>
+         
           <Route path='/view-all' exact render={(props) => (
       <ViewALL {...props} CartItem={CartItem} addToCart={addToCart} />
     )} />
         </Switch>
+        {/* <Route path='/SearchPage' exact>
+            <SearchPage />
+            
+          </Route> */}
         <Footer />
         
       </Router>
